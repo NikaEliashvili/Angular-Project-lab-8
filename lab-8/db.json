@@ -1,0 +1,79 @@
+{
+  "laptops": [
+    {
+      "id": "1",
+      "modelName": "Dell XPS 11",
+      "price": 1100.5
+    },
+    {
+      "id": "2",
+      "modelName": "MacBook Air",
+      "price": 1199.99
+    },
+    {
+      "id": "3",
+      "modelName": "HP Spectre x360",
+      "price": 1299.99
+    },
+    {
+      "id": "4",
+      "modelName": "Lenovo ThinkPad X1 Carbon",
+      "price": 1399.99
+    },
+    {
+      "id": "5",
+      "modelName": "Asus ZenBook 14",
+      "price": 999.99
+    },
+    {
+      "id": "6",
+      "modelName": "Acer Swift 3",
+      "price": 899.99
+    },
+    {
+      "id": "7",
+      "modelName": "Microsoft Surface Laptop 4",
+      "price": 1499.99
+    },
+    {
+      "id": "8",
+      "modelName": "LG Gram 17",
+      "price": 1599.99
+    },
+    {
+      "id": "9",
+      "modelName": "Razer Blade 15",
+      "price": 1899.99
+    },
+    {
+      "id": "10",
+      "modelName": "Alienware m15 R6",
+      "price": 2299.99
+    },
+    {
+      "id": "11",
+      "modelName": "Lenovo Legion 5",
+      "price": 1099.99
+    },
+    {
+      "id": "12",
+      "modelName": "MSI GS66 Stealth",
+      "price": 1799.99
+    },
+    {
+      "id": "13",
+      "modelName": "HP Omen 15",
+      "price": 1499.99
+    },
+    {
+      "id": "14",
+      "modelName": "Dell Inspiron 14",
+      "price": 799.98
+    },
+    {
+      "modelName": "New Laptop",
+      "price": 1000,
+      "id": "Eb72C5O"
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+<form
+  [formGroup]="newLaptopForm"
+  (ngSubmit)="createLaptop()"
+  class="create-form"
+>
+  <div>
+    <label for="newModelName">New Model Name:</label>
+    <input type="text" id="newModelName" formControlName="modelName" />
+  </div>
+  <div>
+    <label for="newPrice">New Price:</label>
+    <input type="number" id="newPrice" formControlName="price" />
+  </div>
+  <button type="submit">Create Laptop</button>
+</form>
+
+<div [formGroup]="searchForm" class="table-container">
+  <label for="search">Search:</label>
+  <input type="text" id="search" formControlName="search" />
+</div>
+<table>
+  <tr>
+    <th>Model Name</th>
+    <th>Price</th>
+    <th></th>
+    <th></th>
+  </tr>
+</table>
+
+<p class="not-found-message" *ngIf="!loadingLaptops && laptops.length === 0">
+  Items not found...
+</p>
+<table class="loading-skeleton" *ngFor="let item of createRange(5)">
+  <tr *ngIf="loadingLaptops">
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
+<table *ngFor="let laptop of laptops">
+  <tr *ngIf="editingLaptopId !== laptop.id; else editMode">
+    <td>{{ laptop.modelName }}</td>
+    <td>
+      {{ laptop.price | currency }}
+    </td>
+    <td>
+      <button class="edit" (click)="startEditing(laptop.id)">Edit</button>
+    </td>
+    <td>
+      <button class="delete" (click)="deleteLaptop(laptop.id)">Delete</button>
+    </td>
+  </tr>
+  <ng-template #editMode>
+    <form [formGroup]="newLaptopForm" (ngSubmit)="saveEditing(laptop)">
+      <td>
+        <input type="text" id="modelName" formControlName="modelName" />
+      </td>
+      <td>
+        <input type="number" id="price" formControlName="price" />
+      </td>
+      <td>
+        <button type="submit" class="save">Save</button>
+      </td>
+      <td>
+        <button type="button" class="cancel" (click)="cancelEditing()">
+          Cancel
+        </button>
+      </td>
+    </form>
+  </ng-template>
+</table>
