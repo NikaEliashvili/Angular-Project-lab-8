@@ -3,7 +3,7 @@
     {
       "id": "1",
       "modelName": "Dell XPS 11",
-      "price": 1100.5
+      "price": 1100.9
     },
     {
       "id": "2",
@@ -58,7 +58,7 @@
     {
       "id": "12",
       "modelName": "MSI GS66 Stealth",
-      "price": 1799.99
+      "price": 1800
     },
     {
       "id": "13",
@@ -69,11 +69,6 @@
       "id": "14",
       "modelName": "Dell Inspiron 14",
       "price": 799.98
-    },
-    {
-      "modelName": "New Laptop",
-      "price": 1000,
-      "id": "Eb72C5O"
     }
   ]
 }

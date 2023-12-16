@@ -51,22 +51,22 @@
       <button class="delete" (click)="deleteLaptop(laptop.id)">Delete</button>
     </td>
   </tr>
-  <ng-template #editMode>
-    <form [formGroup]="newLaptopForm" (ngSubmit)="saveEditing(laptop)">
-      <td>
-        <input type="text" id="modelName" formControlName="modelName" />
-      </td>
-      <td>
-        <input type="number" id="price" formControlName="price" />
-      </td>
-      <td>
-        <button type="submit" class="save">Save</button>
-      </td>
-      <td>
-        <button type="button" class="cancel" (click)="cancelEditing()">
-          Cancel
-        </button>
-      </td>
-    </form>
+  <ng-template [formGroup]="editingLaptopForm" #editMode>
+    <td>
+      <input type="text" id="modelName" formControlName="modelName" />
+    </td>
+    <td>
+      <input type="number" id="price" formControlName="price" />
+    </td>
+    <td>
+      <button type="submit" class="save" (click)="saveEditing(laptop)">
+        Save
+      </button>
+    </td>
+    <td>
+      <button type="button" class="cancel" (click)="cancelEditing()">
+        Cancel
+      </button>
+    </td>
   </ng-template>
 </table>

@@ -13,6 +13,7 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 export class LaptopManagementComponent implements OnInit {
   laptops: Laptop[] = [];
   newLaptopForm: FormGroup;
+  editingLaptopForm: FormGroup;
   editingLaptopId: string | null = null;
   searchForm: FormGroup;
   loadingLaptops: boolean = true;
@@ -24,6 +25,11 @@ export class LaptopManagementComponent implements OnInit {
     });
     this.searchForm = this.fb.group({
       search: [''],
+    });
+
+    this.editingLaptopForm = this.fb.group({
+      modelName: ['', Validators.required],
+      price: [0, [Validators.required, Validators.min(0)]],
     });
   }
 
@@ -45,7 +51,7 @@ export class LaptopManagementComponent implements OnInit {
     this.loadingLaptops = true; // Set loading to true before making the request
     this.laptopService.getLaptops().subscribe(
       (laptops: Laptop[]) => {
-        this.laptops = laptops;
+        this.laptops = laptops.reverse();
         this.loadingLaptops = false; // Set loading to false after successful loading
       },
       (error) => {
@@ -68,8 +74,9 @@ export class LaptopManagementComponent implements OnInit {
   startEditing(id: string): void {
     this.editingLaptopId = id;
     const editingLaptop = this.laptops.find((laptop) => laptop.id === id);
+    console.log(editingLaptop);
     if (editingLaptop) {
-      this.newLaptopForm.patchValue({
+      this.editingLaptopForm.patchValue({
         modelName: editingLaptop.modelName,
         price: editingLaptop.price,
       });
@@ -77,29 +84,28 @@ export class LaptopManagementComponent implements OnInit {
   }
 
   saveEditing(laptop: Laptop): void {
-    if (this.newLaptopForm.valid) {
+    if (this.editingLaptopForm.valid) {
       const updatedLaptop: Laptop = {
         ...laptop,
-        ...this.newLaptopForm.value,
+        ...this.editingLaptopForm.value,
       };
       this.laptopService.updateLaptop(updatedLaptop).subscribe(() => {
         this.editingLaptopId = null;
         this.loadLaptops();
-        this.newLaptopForm.reset();
+        this.editingLaptopForm.reset();
       });
     }
   }
 
   cancelEditing(): void {
     this.editingLaptopId = null;
-    this.newLaptopForm.reset();
+    this.editingLaptopForm.reset();
   }
 
   deleteLaptop(id: string): void {
     this.laptopService.deleteLaptop(id).subscribe(() => {
       this.loadLaptops();
       this.editingLaptopId = null;
-      this.newLaptopForm.reset();
     });
   }
 
